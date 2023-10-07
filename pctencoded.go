@@ -6,8 +6,10 @@ import (
 	"sourcecode.social/reiver/go-erorr"
 )
 
+const pctencodedprefix = '%'
+
 func IsPctEncodedPrefix(r rune) bool {
-	return '%' == r
+	return pctencodedprefix == r
 }
 
 func ReadPctEncodedByte(reader io.Reader) (byte, error) {
@@ -19,8 +21,6 @@ func ReadPctEncodedByte(reader io.Reader) (byte, error) {
 	var p []byte = buffer[:]
 
 	{
-		const expected byte = '%'
-
 		n, err := reader.Read(p)
 		if nil != err {
 			return 0, erorr.Errorf("rfc3986: could not read the 1st byte in pct-encoded string because: %w", err)
@@ -29,10 +29,10 @@ func ReadPctEncodedByte(reader io.Reader) (byte, error) {
 			return 0, erorr.Errorf("rfc3986: problem reading the 1st byte in pct-encoded string — expected to have read 1 byte but actually read %d bytes.", n)
 		}
 
-		actual := buffer[0]
+		b0 := buffer[0]
 
-		if expected != actual {
-			return 0, erorr.Errorf("rfc3986:the 1st byte in pct-encoded string is not a percent-sign (%U) (%q) is actually %U (%q)", expected, expected, actual, actual)
+		if !IsPctEncodedPrefix(rune(b0)) {
+			return 0, erorr.Errorf("rfc3986:the 1st byte in pct-encoded string is not a percent-sign (%U) (%q) is actually %U (%q)", pctencodedprefix, pctencodedprefix, b0, b0)
 		}
 	}
 
