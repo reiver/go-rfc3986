@@ -5,5 +5,6 @@ import (
 )
 
 const (
+	errNilReader = erorr.Error("rfc3986: nil reader")
 	errNilWriter = erorr.Error("rfc3986: nil writer")
 )
