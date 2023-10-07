@@ -6,6 +6,10 @@ import (
 	"sourcecode.social/reiver/go-erorr"
 )
 
+func IsPctEncodedPrefix(r rune) bool {
+	return '%' == r
+}
+
 func ReadPctEncodedByte(reader io.Reader) (byte, error) {
 	if nil == reader {
 		return 0, errNilReader
