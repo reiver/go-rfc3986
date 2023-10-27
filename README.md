@@ -22,7 +22,7 @@ import "sourcecode.social/reiver/go-rfc3986"
 
 To install package **rfc3986** do the following:
 ```
-GOPROXY=direct https://sourcecode.social/reiver/go-rfc3986
+GOPROXY=direct go get https://sourcecode.social/reiver/go-rfc3986
 ```
 
 ## Author
