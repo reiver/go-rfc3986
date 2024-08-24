@@ -1,6 +1,4 @@
-sourcecode.social/reiver/go-erorr v0.0.0-20230922202459-231149d185a1 h1:wpnz4JicQBLWrgGphYBls7DysIFCcnWgDz/vce/sY8E=
-sourcecode.social/reiver/go-erorr v0.0.0-20230922202459-231149d185a1/go.mod h1:NFtd7fzEf0r6A6R7JXYZfayRhPaJy0zt/18VWoLzrxA=
-sourcecode.social/reiver/go-rfc2234 v0.0.0-20231004090151-ce553a7c22a5 h1:wCAZmyemJDcwkPVs4rODF+kDtgnvtPLLymwGjdJTGO0=
-sourcecode.social/reiver/go-rfc2234 v0.0.0-20231004090151-ce553a7c22a5/go.mod h1:EuJSji3zbYdlUu4hhW8Zs300SMcn7+7z3YqM5ZZNAyo=
-sourcecode.social/reiver/go-rfc2234 v0.0.0-20231006162118-904bbffee7e4 h1:9Ky4s8gKOCLZcAZnyd20eg61rcNI24Q3Ez1TuszC9DY=
-sourcecode.social/reiver/go-rfc2234 v0.0.0-20231006162118-904bbffee7e4/go.mod h1:EuJSji3zbYdlUu4hhW8Zs300SMcn7+7z3YqM5ZZNAyo=
+github.com/reiver/go-erorr v0.0.0-20240801233437-8cbde6d1fa3f h1:D1QSxKHm8U73XhjsW3SFLkT0zT5pKJi+1KGboMhY1Rk=
+github.com/reiver/go-erorr v0.0.0-20240801233437-8cbde6d1fa3f/go.mod h1:F0HbBf+Ak2ZlE8YkDW4Y+KxaUmT0KaaIJK6CXY3cJxE=
+github.com/reiver/go-rfc2234 v0.0.0-20240824134608-874192441e79 h1:DRNqoxS6b5TLHKjX5hE6PSL2b0GqlMiw5Vh4ct7oIYs=
+github.com/reiver/go-rfc2234 v0.0.0-20240824134608-874192441e79/go.mod h1:ukK719h1pqMMWmCcBwHnBCcY2lRYnnBpWljt3Ek4QDs=

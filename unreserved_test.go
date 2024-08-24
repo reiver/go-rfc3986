@@ -3,9 +3,9 @@ package rfc3986_test
 import (
 	"testing"
 
-	"sourcecode.social/reiver/go-rfc2234"
+	"github.com/reiver/go-rfc2234"
 
-	"sourcecode.social/reiver/go-rfc3986"
+	"github.com/reiver/go-rfc3986"
 )
 
 func TestIsUnreserved(t *testing.T) {

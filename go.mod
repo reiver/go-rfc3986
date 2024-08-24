@@ -1,8 +1,8 @@
-module sourcecode.social/reiver/go-rfc3986
+module github.com/reiver/go-rfc3986
 
 go 1.20
 
 require (
-	sourcecode.social/reiver/go-erorr v0.0.0-20230922202459-231149d185a1 // indirect
-	sourcecode.social/reiver/go-rfc2234 v0.0.0-20231006162118-904bbffee7e4 // indirect
+	github.com/reiver/go-erorr v0.0.0-20240801233437-8cbde6d1fa3f // indirect
+	github.com/reiver/go-rfc2234 v0.0.0-20240824134608-874192441e79 // indirect
 )

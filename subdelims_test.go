@@ -3,7 +3,7 @@ package rfc3986_test
 import (
 	"testing"
 
-	"sourcecode.social/reiver/go-rfc3986"
+	"github.com/reiver/go-rfc3986"
 )
 
 func TestIsSubDelim(t *testing.T) {

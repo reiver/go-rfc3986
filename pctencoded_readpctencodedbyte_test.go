@@ -6,7 +6,7 @@ import (
 	"io"
 	"strings"
 
-	"sourcecode.social/reiver/go-rfc3986"
+	"github.com/reiver/go-rfc3986"
 )
 
 func TestReadPctEncodedByte(t *testing.T) {

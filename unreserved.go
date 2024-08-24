@@ -1,7 +1,7 @@
 package rfc3986
 
 import (
-	"sourcecode.social/reiver/go-rfc2234"
+	"github.com/reiver/go-rfc2234"
 )
 
 // IsUnreserved returns true if the value of 'r' matches 'unreserved' as defined in IETF RFC-3986:

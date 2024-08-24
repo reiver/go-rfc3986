@@ -5,7 +5,7 @@ import (
 
 	"strings"
 
-	"sourcecode.social/reiver/go-rfc3986"
+	"github.com/reiver/go-rfc3986"
 )
 
 func TestWritePctEncodedByte(t *testing.T) {
