@@ -27,4 +27,4 @@ GOPROXY=direct go get https://sourcecode.social/reiver/go-rfc3986
 
 ## Author
 
-Package **rfc3986** was written by [Charles Iliya Krempeaux](http://changelog.ca)
+Package **rfc3986** was written by [Charles Iliya Krempeaux](http://reiver.link)
