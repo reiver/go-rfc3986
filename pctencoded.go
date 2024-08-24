@@ -4,9 +4,46 @@ import (
 	"io"
 
 	"github.com/reiver/go-erorr"
+	"github.com/reiver/go-rfc2234"
 )
 
 const pctencodedprefix = '%'
+
+// IsPctEncodedPrefix returns true if what is at the beginning of the string is 'pct-encoded' as defined by IETF RFC-3986.
+//
+//	pct-encoded = "%" HEXDIG HEXDIG
+//
+// Where 'HEXDIG' is defined in IETF RFC-2234 as:
+//
+//	HEXDIG = DIGIT / "A" / "B" / "C" / "D" / "E" / "F"
+//	
+//	DIGIT  = %x30-39
+//	       ; 0-9
+func HasPrefixPctEncoded(str string) bool {
+	var length int = len(str)
+
+	if length < 3 {
+		return false
+	}
+
+	var str0 rune = rune(str[0])
+	var str1 rune = rune(str[1])
+	var str2 rune = rune(str[2])
+
+	if !IsPctEncodedPrefix(str0) {
+		return false
+	}
+
+	if !rfc2234.IsHexDig(str1) {
+		return false
+	}
+
+	if !rfc2234.IsHexDig(str2) {
+		return false
+	}
+
+	return true
+}
 
 func IsPctEncodedPrefix(r rune) bool {
 	return pctencodedprefix == r
