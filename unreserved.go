@@ -12,7 +12,7 @@ func IsUnreserved(r rune) bool {
 		return true
 	}
 
-	if rfc2234.IsDigit(r) {
+	if IsDigit(r) {
 		return true
 	}
 

@@ -4,7 +4,6 @@ import (
 	"io"
 
 	"github.com/reiver/go-erorr"
-	"github.com/reiver/go-rfc2234"
 )
 
 const pctencodedprefix = '%'
@@ -34,11 +33,11 @@ func HasPrefixPctEncoded(str string) bool {
 		return false
 	}
 
-	if !rfc2234.IsHexDig(str1) {
+	if !IsHexDig(str1) {
 		return false
 	}
 
-	if !rfc2234.IsHexDig(str2) {
+	if !IsHexDig(str2) {
 		return false
 	}
 

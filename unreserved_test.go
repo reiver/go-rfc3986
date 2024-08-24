@@ -3,8 +3,6 @@ package rfc3986_test
 import (
 	"testing"
 
-	"github.com/reiver/go-rfc2234"
-
 	"github.com/reiver/go-rfc3986"
 )
 
@@ -25,8 +23,8 @@ func TestIsUnreserved(t *testing.T) {
 			Expected: false,
 		}
 
-		if rfc2234.IsAlpha(r) ||
-		   rfc2234.IsDigit(r) ||
+		if rfc3986.IsAlpha(r) ||
+		   rfc3986.IsDigit(r) ||
 		   '-' == r           ||
 		   '.' == r           ||
 		   '_' == r           ||
