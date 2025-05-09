@@ -13,6 +13,8 @@ import (
 //	ALPHA  = %41-%5A / %61-%7A
 //	
 //	DIGIT  = %30-%39
+//
+// Although ReadScheme reads the colon (":") it does not return it as part of the scheme.
 func ReadScheme(reader io.Reader) (string, error) {
 
 	if nil == reader {
