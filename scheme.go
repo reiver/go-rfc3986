@@ -6,6 +6,8 @@ import (
 	"github.com/reiver/go-erorr"
 )
 
+const SchemeTerminator = ':'
+
 // ReadScheme reads and return the 'scheme' as defined by IETF RFC-3986:
 //
 //	scheme = ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )
@@ -44,7 +46,7 @@ func ReadScheme(reader io.Reader) (string, error) {
 			r0 := rune(b0)
 
 			switch {
-			case ':' == b0:
+			case SchemeTerminator == b0:
 		/////////////// BREAK
 				break loop
 			case IsAlpha(r0) || IsDigit(r0) || '+' == r0 || '-' == r0 || '.' == r0:
