@@ -2,6 +2,7 @@ package rfc3986
 
 import (
 	"io"
+	"strings"
 
 	"github.com/reiver/go-erorr"
 )
@@ -35,6 +36,14 @@ func ReadScheme(reader io.Reader) (string, error) {
 			byteNumber++
 
 			n, err := reader.Read(b[:])
+			if io.EOF == err {
+				switch {
+				case len(scheme) <= 0:
+					return "", erorr.Errorf("rfc3986: bad scheme — no data")
+				default:
+					return "", erorr.Errorf("rfc3986: bad scheme — scheme terminator character (0x%02X) (%U) (%q) not found", SchemeTerminator, SchemeTerminator, SchemeTerminator)
+				}
+			}
 			if nil != err {
 				return "", erorr.Errorf("rfc3986: could not read the byte №%d in scheme string because: %w", byteNumber, err)
 			}

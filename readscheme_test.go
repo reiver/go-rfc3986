@@ -137,7 +137,7 @@ func TestReadScheme_fail(t *testing.T) {
 	}{
 		{
 			Data: "",
-			ExpectedError: `rfc3986: could not read the byte №1 in scheme string because: EOF`,
+			ExpectedError: `rfc3986: bad scheme — no data`,
 		},
 
 
@@ -151,11 +151,11 @@ func TestReadScheme_fail(t *testing.T) {
 
 		{
 			Data: "http",
-			ExpectedError: `rfc3986: could not read the byte №5 in scheme string because: EOF`,
+			ExpectedError: `rfc3986: bad scheme — scheme terminator character (0x3A) (U+003A) (':') not found`,
 		},
 		{
 			Data: "HTTP",
-			ExpectedError: `rfc3986: could not read the byte №5 in scheme string because: EOF`,
+			ExpectedError: `rfc3986: bad scheme — scheme terminator character (0x3A) (U+003A) (':') not found`,
 		},
 
 
