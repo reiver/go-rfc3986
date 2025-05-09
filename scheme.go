@@ -61,6 +61,9 @@ func ReadScheme(reader io.Reader) (string, error) {
 	if len(scheme) <= 0 {
 				return "", erorr.Error("rfc3986: bad scheme — scheme must be at least one character long")
 	}
+	if b0 := scheme[0]; !IsAlpha(rune(b0)) {
+				return "", erorr.Errorf("rfc3986: bad scheme — byte №1 has value 0x%02X is not allowed for the first character of scheme", b0)
+	}
 
 	return string(scheme), nil
 }

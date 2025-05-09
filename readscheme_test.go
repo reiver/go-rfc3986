@@ -164,6 +164,21 @@ func TestReadScheme_fail(t *testing.T) {
 			Data: "a😈2:",
 			ExpectedError: `rfc3986: bad scheme — byte №2 has value 0xF0 is not allowed in scheme`,
 		},
+
+
+
+		{
+			Data: "+example:",
+			ExpectedError: `rfc3986: bad scheme — byte №1 has value 0x2B is not allowed for the first character of scheme`,
+		},
+		{
+			Data: "-example:",
+			ExpectedError: `rfc3986: bad scheme — byte №1 has value 0x2D is not allowed for the first character of scheme`,
+		},
+		{
+			Data: ".example:",
+			ExpectedError: `rfc3986: bad scheme — byte №1 has value 0x2E is not allowed for the first character of scheme`,
+		},
 	}
 
 	for testNumber, test := range tests {
