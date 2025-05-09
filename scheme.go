@@ -77,3 +77,9 @@ func ReadScheme(reader io.Reader) (string, error) {
 	return string(scheme), nil
 }
 
+func ValidateScheme(scheme string) error {
+	var reader io.Reader = strings.NewReader(scheme)
+
+	_, err := ReadScheme(reader)
+	return err
+}
