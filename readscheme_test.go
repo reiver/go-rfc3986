@@ -143,6 +143,13 @@ func TestReadScheme_fail(t *testing.T) {
 
 
 		{
+			Data: ":",
+			ExpectedError: `rfc3986: bad scheme — scheme must be at least one character long`,
+		},
+
+
+
+		{
 			Data: "http",
 			ExpectedError: `rfc3986: could not read the byte №5 in scheme string because: EOF`,
 		},
@@ -155,7 +162,7 @@ func TestReadScheme_fail(t *testing.T) {
 
 		{
 			Data: "a😈2:",
-			ExpectedError: `rfc3986: problem reading the byte №2 in scheme string — byte 0xF0 is not allowed in scheme`,
+			ExpectedError: `rfc3986: bad scheme — byte №2 has value 0xF0 is not allowed in scheme`,
 		},
 	}
 

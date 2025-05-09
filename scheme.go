@@ -52,11 +52,16 @@ func ReadScheme(reader io.Reader) (string, error) {
 			case IsAlpha(r0) || IsDigit(r0) || '+' == r0 || '-' == r0 || '.' == r0:
 				scheme = append(scheme, b0)
 			default:
-				return "", erorr.Errorf("rfc3986: problem reading the byte №%d in scheme string — byte 0x%02X is not allowed in scheme", byteNumber, b0)
+				return "", erorr.Errorf("rfc3986: bad scheme — byte №%d has value 0x%02X is not allowed in scheme", byteNumber, b0)
 			}
 		}
 
 	}
 
+	if len(scheme) <= 0 {
+				return "", erorr.Error("rfc3986: bad scheme — scheme must be at least one character long")
+	}
+
 	return string(scheme), nil
 }
+
