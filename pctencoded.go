@@ -123,6 +123,24 @@ func IsPctEncodedPrefix(r rune) bool {
 	return pctencodedprefix == r
 }
 
+func PeekPrefixPctEncoded(str string) (rune, int, bool) {
+	if !HasPrefixPctEncoded(str) {
+		var nada rune
+		return nada, 0, false
+	}
+
+	var str1 byte = str[1]
+	var str2 byte = str[2]
+
+	decoded, err := DecodePctEncoded(str1, str2)
+	if nil != err {
+		var nada rune
+		return nada, 0, false
+	}
+
+	return rune(decoded), 3, true
+}
+
 func ReadPctEncodedByte(reader io.Reader) (byte, error) {
 	if nil == reader {
 		return 0, errNilReader
