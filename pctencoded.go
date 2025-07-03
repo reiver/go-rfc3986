@@ -10,6 +10,22 @@ const pctencodedprefix = '%'
 
 // HasPrefixPctEncoded returns true if what is at the beginning of the string is 'pct-encoded' as defined by IETF RFC-3986.
 //
+// For example, any of these would return 'true':
+//
+//	"%2Fdir"
+//
+//	"%7Ejoeblow"
+//
+// And, for example, any of these would return 'false':
+//
+//	"Hello world!"
+//
+//	"dir%2F"
+//
+//	"joeblow%40example.com"
+//
+// 'pct-encoded' is defined by IETF RFC-3986 as follows:
+//
 //	pct-encoded = "%" HEXDIG HEXDIG
 //
 // Where 'HEXDIG' is defined in IETF RFC-2234 as:
