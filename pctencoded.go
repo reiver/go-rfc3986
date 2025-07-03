@@ -60,6 +60,10 @@ func HasPrefixPctEncoded(str string) bool {
 	return true
 }
 
+// IsPctEncodedPrefix return 'true' if the rune is the 'pct-encoded' prefix character (i.e., if it is '%'),
+// and returns 'false' otherwise.
+//
+// Note, to determine if a string begins with a 'pct-encoded' instead use [HasPrefixPctEncoded].
 func IsPctEncodedPrefix(r rune) bool {
 	return pctencodedprefix == r
 }
