@@ -8,6 +8,61 @@ import (
 
 const pctencodedprefix = '%'
 
+// DecodePctEncoded decodes the 2nd and 3rd byte of an IETF RFC-3986 'pct-encoded'.
+// (The 1st byte of an IETF RFC-3986 'pct-encoded' is a percent-symbol (i.e., '%'), so we don't include it in the parameters.)
+//
+// For example, this:
+//
+//	b, err := rfc3986.DecodePctEncoded('2', 'F')
+//
+// Would return:
+//
+//	'/'
+func DecodePctEncoded(b2 byte, b3 byte) (byte, error) {
+
+	var result byte
+
+	{
+		var b byte = b2
+
+		switch {
+		case '0' <= b && b <= '9':
+			b -= '0'
+		case 'A' <= b && b <= 'F':
+			b -= 'A'
+			b += 10
+		case 'a' <= b && b <= 'f':
+			b -= 'a'
+			b += 10
+		default:
+			return 0, erorr.Errorf("rfc3986: the 2nd byte in the pct-encoded string is not an IETF RFC-2234 'HEXDIG'")
+		}
+
+		result |= (b << 4)
+	}
+
+	{
+		var b byte = b3
+
+		switch {
+		case '0' <= b && b <= '9':
+			b -= '0'
+		case 'A' <= b && b <= 'F':
+			b -= 'A'
+			b += 10
+		case 'a' <= b && b <= 'f':
+			b -= 'a'
+			b += 10
+		default:
+			return 0, erorr.Errorf("rfc3986: the 3nd byte in the pct-encoded string is not an IETF RFC-2234 'HEXDIG'")
+		}
+
+		result |= b
+	}
+
+	return result, nil
+}
+
 // HasPrefixPctEncoded returns true if what is at the beginning of the string is 'pct-encoded' as defined by IETF RFC-3986.
 //
 // For example, any of these would return 'true':
