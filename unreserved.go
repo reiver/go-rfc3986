@@ -23,3 +23,19 @@ func IsUnreserved(r rune) bool {
 
 	return false
 }
+
+func PeekPrefixUnreserved(str string) (rune, int, bool) {
+
+	r, n, found := firstCharacter(str)
+	if !found {
+		var nada rune
+		return nada, 0, false
+	}
+
+	if !IsUnreserved(r) {
+		var nada rune
+		return nada, 0, false
+	}
+
+	return r, n, true
+}
