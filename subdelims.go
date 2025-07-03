@@ -11,3 +11,18 @@ func IsSubDelim(r rune) bool {
 		return false
 	}
 }
+
+func PeekPrefixSubDelims(str string) (rune, int, bool) {
+	r, n, found := firstCharacter(str)
+	if !found {
+		var nada rune
+		return nada, 0, false
+	}
+
+	if !IsSubDelim(r) {
+		var nada rune
+		return nada, 0, false
+	}
+
+	return r, n, true
+}
