@@ -8,7 +8,7 @@ import (
 
 const pctencodedprefix = '%'
 
-// IsPctEncodedPrefix returns true if what is at the beginning of the string is 'pct-encoded' as defined by IETF RFC-3986.
+// HasPrefixPctEncoded returns true if what is at the beginning of the string is 'pct-encoded' as defined by IETF RFC-3986.
 //
 //	pct-encoded = "%" HEXDIG HEXDIG
 //
