@@ -147,8 +147,7 @@ func ReadPctEncodedByte(reader io.Reader) (byte, error) {
 		}
 	}
 
-	var result byte = 0
-
+	var b1 byte
 	{
 		n, err := reader.Read(p)
 		if nil != err {
@@ -158,24 +157,10 @@ func ReadPctEncodedByte(reader io.Reader) (byte, error) {
 			return 0, erorr.Errorf("rfc3986: problem reading the 2nd byte in pct-encoded string — expected to have read 1 byte but actually read %d bytes.", n)
 		}
 
-		b0 := buffer[0]
-
-		switch {
-		case '0' <= b0 && b0 <= '9':
-			b0 -= '0'
-		case 'A' <= b0 && b0 <= 'F':
-			b0 -= 'A'
-			b0 += 10
-		case 'a' <= b0 && b0 <= 'f':
-			b0 -= 'a'
-			b0 += 10
-		default:
-			return 0, erorr.Errorf("rfc3986: the 2nd byte in the pct-encoded string is not an IETF RFC-2234 'HEXDIG'")
-		}
-
-		result |= (b0 << 4)
+		b1 = buffer[0]
 	}
 
+	var b2 byte
 	{
 		n, err := reader.Read(p)
 		if nil != err {
@@ -185,25 +170,10 @@ func ReadPctEncodedByte(reader io.Reader) (byte, error) {
 			return 0, erorr.Errorf("rfc3986: problem reading the 3rd byte in pct-encoded string — expected to have read 1 byte but actually read %d bytes.", n)
 		}
 
-		b0 := buffer[0]
-
-		switch {
-		case '0' <= b0 && b0 <= '9':
-			b0 -= '0'
-		case 'A' <= b0 && b0 <= 'F':
-			b0 -= 'A'
-			b0 += 10
-		case 'a' <= b0 && b0 <= 'f':
-			b0 -= 'a'
-			b0 += 10
-		default:
-			return 0, erorr.Errorf("rfc3986: the 2nd byte in the pct-encoded string is not an IETF RFC-2234 'HEXDIG'")
-		}
-
-		result |= b0
+		b2 = buffer[0]
 	}
 
-	return result, nil
+	return DecodePctEncoded(b1, b2)
 }
 
 func WritePctEncodedByte(writer io.Writer, b byte) error {
