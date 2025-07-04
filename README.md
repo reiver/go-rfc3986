@@ -5,6 +5,9 @@ Package **rfc3986** is an implementation of (parts of) IETF RFC-3986, for the Go
 Uniform Resource Identifier (URI): Generic Syntax (January 2005)  
 https://datatracker.ietf.org/doc/html/rfc3986
 
+Definition in IETF RFC-3986 are referred to in a numer of other IETF RFCs.
+And thus, tools provided in this package can also be helpful in implementing this IETF RFCs, too.
+
 ## Documention
 
 Online documentation, which includes examples, can be found at: http://godoc.org/github.com/reiver/go-rfc3986
