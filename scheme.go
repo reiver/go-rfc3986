@@ -77,6 +77,51 @@ func ReadScheme(reader io.Reader) (string, error) {
 	return string(scheme), nil
 }
 
+// PeekPrefixScheme peeks and returns the 'scheme' as defined by IETF RFC-3986:
+//
+//	scheme = ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )
+//	
+//	ALPHA  = %41-%5A / %61-%7A
+//	
+//	DIGIT  = %30-%39
+func PeekPrefixScheme(str string) (scheme string, n int, found bool) {
+
+	if len(str) <= 0 {
+		return "", 0, false
+	}
+
+	var buffer [512]byte
+	var bytes []byte = buffer[0:0]
+
+	var sawColon bool
+
+	loop: for index, r := range str {
+		switch {
+		case index <= 0:
+			if !IsAlpha(r) {
+				return "", 0, false
+			}
+			r = asciiToLower(r)
+			bytes = append(bytes, string(r)...)
+		case ':' == r:
+			sawColon = true
+			break loop
+		default:
+			if !IsAlpha(r) && !IsDigit(r) && '+' != r && '-' != r && '.' != r {
+				return "", 0, false
+			}
+			r = asciiToLower(r)
+			bytes = append(bytes, string(r)...)
+		}
+	}
+
+	if !sawColon {
+		return "", 0, false
+	}
+
+	return string(bytes), len(bytes), true
+}
+
 func ValidateScheme(scheme string) error {
 	var reader io.Reader = strings.NewReader(scheme)
 
